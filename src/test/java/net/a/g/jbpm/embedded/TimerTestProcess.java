@@ -100,7 +100,7 @@ public class TimerTestProcess {
     public void testProcessStartWithTimer10S() throws Exception {
         countDownListener.configure("TimerTestProcess", 1);
 
-        HashMap param = new HashMap();
+        HashMap<String,Object> param = new HashMap<String,Object>();
 
         param.put("integerIn", 123);
         param.put("booleanIn", true);
@@ -130,7 +130,7 @@ public class TimerTestProcess {
     public void testProcessStartWithTimer15S() throws Exception {
         countDownListener.configure("TimerTestProcess", 1);
 
-        HashMap param = new HashMap();
+        HashMap<String,Object> param = new HashMap<String,Object>();
 
         param.put("integerIn", 123);
         param.put("booleanIn", true);
