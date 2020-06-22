@@ -18,6 +18,7 @@
     <version>7.23.0.Final</version>
   </parent>
 
+  <groupId>net.a.g.jbpm</groupId>
   <artifactId>jbpm-embedded-quartz</artifactId>
 
   <properties>
