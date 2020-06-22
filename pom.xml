@@ -22,7 +22,7 @@
   <artifactId>jbpm-embedded-quartz</artifactId>
 
   <properties>
-    <start-class>org.jbpm.springboot.samples.JBPMApplication</start-class>
+    <start-class>net.a.g.jbpm.embedded.JBPMApplication</start-class>
   </properties>
 
   <dependencies>
