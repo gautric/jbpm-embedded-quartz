@@ -116,7 +116,7 @@ public class TimerTestProcess {
         Thread.sleep(2 * 1000);
         // make sure it was quartz thread that completed the process as the process ends
         // after timer expiration
-        assertTrue(countDownListener.getExecutingThread().startsWith("SpringBootScheduler"));
+        assertTrue(countDownListener.getExecutingThread().startsWith("QuartzScheduler"));
 
         ProcessInstance pi = processService.getProcessInstance(processInstanceId);
         assertNull(pi);
@@ -124,8 +124,6 @@ public class TimerTestProcess {
         ProcessInstanceDesc pid = runtimeDataService.getProcessInstanceById(processInstanceId);
         assertEquals((Integer) pid.getState(), (Integer) 2);
         assertQRTZCount(0);
-        assertEquals(countDownListener.getExecutingThread(),"SpringBootScheduler_Worker-1");
-
     }
 
     @Test(timeout = 45000)
@@ -152,7 +150,7 @@ public class TimerTestProcess {
         Thread.sleep(2 * 1000);
 
         // make sure it was quartz thread that completed the process as the process ends after timer expiration
-        assertTrue(countDownListener.getExecutingThread().startsWith("SpringBootScheduler"));
+        assertTrue(countDownListener.getExecutingThread().startsWith("QuartzScheduler"));
         
         ProcessInstance pi = processService.getProcessInstance(processInstanceId);
         assertNull(pi);
@@ -161,8 +159,6 @@ public class TimerTestProcess {
         assertEquals((Integer)pid2.getState(), (Integer)2);
 
         assertQRTZCount(0);
-        assertEquals(countDownListener.getExecutingThread(),"SpringBootScheduler_Worker-1");
-
     }  
 
 
