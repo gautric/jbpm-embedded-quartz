@@ -41,6 +41,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kie.api.runtime.process.ProcessInstance;
 import org.kie.internal.runtime.conf.RuntimeStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -53,6 +55,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringBootTest(classes = { JBPMApplication.class }, webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 public class TimerQuartzEmbeddedTest {
+	
+    private static final Logger LOGGER = LoggerFactory.getLogger(TimerQuartzEmbeddedTest.class);
+
 
     
     @Value("${test.artifactId}")
@@ -167,6 +172,8 @@ public class TimerQuartzEmbeddedTest {
         ResultSet result = dataSource.getConnection().prepareStatement("SELECT COUNT(*) FROM QRTZ_TRIGGERS").executeQuery();
         assertTrue(result.next());
         assertEquals((Integer)count,(Integer)result.getInt(1));
+        LOGGER.info("Timer Validation into Quartz Database, --> {} line into QRTZ_TRIGGERS", count);
+        
 
     }
 }
