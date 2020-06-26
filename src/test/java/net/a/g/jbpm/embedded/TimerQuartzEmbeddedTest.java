@@ -52,7 +52,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { JBPMApplication.class }, webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
-public class TimerTestProcess {
+public class TimerQuartzEmbeddedTest {
 
     
     @Value("${test.artifactId}")
