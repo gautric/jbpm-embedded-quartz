@@ -22,8 +22,10 @@ import org.jbpm.kie.services.impl.KModuleDeploymentUnit;
 import org.jbpm.services.api.DeploymentService;
 import org.jbpm.services.api.ProcessService;
 import org.jbpm.services.api.RuntimeDataService;
+import org.jbpm.services.api.UserTaskService;
 import org.jbpm.services.api.model.ProcessDefinition;
 import org.kie.api.runtime.query.QueryContext;
+import org.kie.internal.runtime.conf.RuntimeStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,13 +60,14 @@ public class JBPMApplication {
             @Override
             public void run(String... strings) throws Exception {                
                 KModuleDeploymentUnit unit = null;
+                                
                 if (strings.length > 0) {
                     String arg = strings[0];
                     LOGGER.info("About to deploy : {}", arg);
-                    
                     String[] gav = arg.split(":");
                     
                     unit = new KModuleDeploymentUnit(gav[0], gav[1], gav[2]);
+                    unit.setStrategy(RuntimeStrategy.PER_REQUEST);
                     deploymentService.deploy(unit);
                     LOGGER.info("{} successfully deployed", arg);
                 }
@@ -84,7 +87,7 @@ public class JBPMApplication {
                     LOGGER.info("Aborted instance with id {}", processInstanceId);
                 }
                 LOGGER.info("========= Verification completed successfully =========");
-            }
+                     }
         };
     }
 }
